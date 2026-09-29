@@ -39,6 +39,29 @@
     return PANO_DESKTOP;
   }
 
+  // Touch/coarse-pointer and narrow layouts use the reliable cylindrical drag view.
+  // This also catches mobile browsers running in desktop-site mode.
+  function shouldUseFallback() {
+    var coarse = false;
+    var narrow = false;
+    var touchPoints = 0;
+
+    try {
+      if (window.matchMedia) {
+        coarse = window.matchMedia("(pointer: coarse)").matches;
+        narrow = window.matchMedia("(max-width: 900px)").matches;
+      }
+    } catch (e) {}
+
+    try {
+      touchPoints = Number(
+        navigator.maxTouchPoints || navigator.msMaxTouchPoints || 0
+      );
+    } catch (e) {}
+
+    return coarse || touchPoints > 0 || narrow;
+  }
+
   function setSubtitle(text) {
     if (subtitleEl) subtitleEl.textContent = text;
   }
@@ -454,6 +477,8 @@
     if (mode === "fallback") {
       setSubtitle(FALLBACK_SUBTITLE);
       if (fallbackState && fallbackState.measure) fallbackState.measure();
+    } else if (shouldUseFallback()) {
+      activateFallback("mobile-input");
     } else {
       ensurePannellum();
     }
@@ -502,6 +527,10 @@
 
   window.addEventListener("resize", function () {
     if (modal.hidden) return;
+    if (mode === "pannellum" && shouldUseFallback()) {
+      activateFallback("mobile-input");
+      return;
+    }
     if (mode === "pannellum" && viewer && viewer.resize) {
       try {
         viewer.resize();
