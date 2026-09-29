@@ -22,26 +22,14 @@
   function prefersMobilePano() {
     // Mobile Chrome/Vivaldi often black-screens after a brief preview when the
     // equirect hits the GPU texture ceiling (4096). Serve 2048 there; keep 4096 on desktop.
+    // Do NOT probe WebGL / call WEBGL_lose_context here — creating a throwaway
+    // context then losing it can poison the page GPU and black-out Pannellum
+    // on desktop and mobile after a brief paint.
     if (window.matchMedia) {
       if (window.matchMedia("(max-width: 900px)").matches) return true;
       if (window.matchMedia("(pointer: coarse)").matches) return true;
     }
     if (navigator.maxTouchPoints && navigator.maxTouchPoints > 1) return true;
-    try {
-      var c = document.createElement("canvas");
-      var gl =
-        c.getContext("webgl", { failIfMajorPerformanceCaveat: false }) ||
-        c.getContext("experimental-webgl");
-      if (gl) {
-        var max = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 0;
-        var lose = gl.getExtension("WEBGL_lose_context");
-        if (lose) lose.loseContext();
-        // Strictly below 4096 cannot safely hold the desktop equirect
-        if (max > 0 && max < 4096) return true;
-      }
-    } catch (e) {
-      /* ignore probe failures */
-    }
     return false;
   }
 
