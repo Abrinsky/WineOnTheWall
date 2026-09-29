@@ -6,13 +6,16 @@
 
   var viewer = null;
   var lastFocus = null;
+
+  // GPano: Full 7168x3584, crop 7168x1560 at top 1316 → band FOV, not black poles
+  var VAOV = (1560 / 3584) * 180;
+  var V_OFFSET = 90 - ((1316 + 1560 / 2) / 3584) * 180;
   var INITIAL_YAW = -127;
   var INITIAL_PITCH = -12;
-  var INITIAL_HFOV = 95;
+  var INITIAL_HFOV = 85;
 
-  var PANO_DESKTOP = "/WineOnTheWall/assets/pano/cellar-equirect.jpg";
-  var PANO_MOBILE = "/WineOnTheWall/assets/pano/cellar-equirect-2048.jpg";
-  var PREVIEW_URL = "/WineOnTheWall/assets/pano/cellar-equirect-preview.jpg";
+  var PANO_DESKTOP = "/WineOnTheWall/assets/pano/cellar-band.jpg";
+  var PANO_MOBILE = "/WineOnTheWall/assets/pano/cellar-band-2048.jpg";
 
   function panoramaUrl() {
     try {
@@ -31,8 +34,10 @@
     viewer = pannellum.viewer(viewerEl, {
       type: "equirectangular",
       panorama: panoramaUrl(),
-      preview: PREVIEW_URL,
       autoLoad: true,
+      haov: 360,
+      vaov: VAOV,
+      vOffset: V_OFFSET,
       showControls: true,
       showFullscreenCtrl: true,
       showZoomCtrl: true,
@@ -41,12 +46,11 @@
       yaw: INITIAL_YAW,
       pitch: INITIAL_PITCH,
       hfov: INITIAL_HFOV,
-      minHfov: 50,
-      maxHfov: 120,
+      minHfov: 45,
+      maxHfov: Math.min(100, VAOV + 10),
+      minPitch: V_OFFSET - VAOV / 2 + 2,
+      maxPitch: V_OFFSET + VAOV / 2 - 2,
       compass: false,
-      horizonPitch: 0,
-      minPitch: -40,
-      maxPitch: 25,
       strings: {
         loadButtonLabel: "Click to<br>Load<br>Panorama",
         loadingLabel: "Loading…",
