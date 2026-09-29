@@ -194,32 +194,66 @@ p { margin: 0 0 1rem; color: var(--muted); }
 }
 .hero-media {
   position: relative;
+  display: block;
   border-radius: calc(var(--radius) + 4px);
   overflow: hidden;
   border: 1px solid rgba(200,206,216,0.18);
   box-shadow: var(--shadow);
   aspect-ratio: 5 / 4;
-  background: #151821;
+  background: #1a1d24;
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+}
+.hero-media::after {
+  /* no full-bleed dark overlay; keep product photo bright */
+  content: none;
 }
 .hero-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: none;
+  opacity: 1;
+  transform: scale(1.01);
+  transition: transform 0.35s ease;
+}
+a.hero-media:hover img,
+a.hero-media:focus-visible img {
+  transform: scale(1.03);
+}
+.hero-media-shade {
+  /* light gradient only at the bottom so the chip stays readable */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 11, 13, 0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 .hero-chip {
   position: absolute;
   left: 1rem;
   bottom: 1rem;
-  background: rgba(10,11,13,0.78);
-  border: 1px solid rgba(201,164,106,0.35);
+  z-index: 2;
+  background: #1a1014;
+  border: 1px solid rgba(201,164,106,0.55);
   color: var(--gold-soft);
-  padding: 0.55rem 0.85rem;
+  padding: 0.55rem 0.95rem;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+a.hero-media:hover .hero-chip,
+a.hero-media:focus-visible .hero-chip {
+  border-color: var(--gold);
+  color: #fff;
 }
 
 .section { padding: clamp(3rem, 6vw, 5rem) 0; }
@@ -474,6 +508,87 @@ p { margin: 0 0 1rem; color: var(--muted); }
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+
+/* Cellar 360 tour page */
+.tour-page {
+  min-height: calc(100vh - var(--nav-h) - 2.5rem);
+  display: flex;
+  flex-direction: column;
+  background: #050607;
+}
+.tour-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  background: rgba(10, 11, 13, 0.92);
+}
+.tour-toolbar h1 {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+.tour-toolbar p {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.tour-stage {
+  position: relative;
+  flex: 1;
+  min-height: min(72vh, 640px);
+  overflow: hidden;
+  background: #0a0b0d;
+  border-bottom: 1px solid var(--line);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.tour-stage.is-dragging { cursor: grabbing; }
+.tour-stage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  display: block;
+  pointer-events: none;
+  filter: none;
+  opacity: 1;
+}
+.tour-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  background: rgba(10, 11, 13, 0.88);
+  border: 1px solid rgba(201,164,106,0.4);
+  color: var(--gold-soft);
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.tour-hint.is-hidden { opacity: 0; }
+.tour-note {
+  padding: 1rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 @media (max-width: 960px) {
