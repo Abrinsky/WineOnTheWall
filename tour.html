@@ -4,56 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cellar 360 Tour | Wine On the Wall</title>
-  <meta name="description" content="Interactive panoramic tour of a Wine On the Wall cellar installation. Sample redesign only." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Interactive spherical panorama of a Wine On the Wall cellar installation. Sample redesign only." />
+  <meta http-equiv="refresh" content="0; url=/WineOnTheWall/?tour=1" />
+  <link rel="canonical" href="https://abrinsky.github.io/WineOnTheWall/?tour=1" />
   <link rel="stylesheet" href="/WineOnTheWall/css/styles.css" />
   <link rel="icon" href="/WineOnTheWall/assets/logo-white.png" />
+  <script>
+    // Prefer in-page homepage modal; keep this URL as a short deep-link.
+    location.replace("/WineOnTheWall/?tour=1");
+  </script>
 </head>
 <body>
-  <div class="sample-banner"><strong>Sample redesign</strong> for Abrinsky/WineOnTheWall. Not the official site. See <a href="https://www.wineonthewall.com/" target="_blank" rel="noopener">wineonthewall.com</a>.</div>
-  <header class="site-header">
-    <div class="container nav">
-      <a class="logo-link" href="/WineOnTheWall/">
-        <img src="/WineOnTheWall/assets/logo-white.png" alt="Wine On the Wall" />
-        <div class="logo-text">Wine On the Wall<span>Stainless wine storage</span></div>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menu</button>
-      <ul class="nav-links" id="nav-menu">
-        <li><a href="/WineOnTheWall/" data-nav="home">Home</a></li>
-        <li><a href="/WineOnTheWall/collections.html" data-nav="collections">Collections</a></li>
-        <li><a href="/WineOnTheWall/about.html" data-nav="about">About</a></li>
-        <li><a class="nav-cta" href="/WineOnTheWall/contact.html" data-nav="contact">Contact</a></li>
-      </ul>
-    </div>
-  </header>
-  <main class="tour-page">
-    <div class="container tour-toolbar">
-      <div>
-        <h1>Cellar panoramic tour</h1>
-        <p>Drag to look around. Touch and drag on mobile.</p>
-      </div>
-      <div class="btn-row" style="margin-top:0;">
-        <a class="btn btn-ghost" href="/WineOnTheWall/">Back to home</a>
-        <a class="btn btn-primary" href="/WineOnTheWall/contact.html">Request a consult</a>
-      </div>
-    </div>
-    <div class="tour-stage" id="tour-stage" role="img" aria-label="Interactive panoramic photo of a wine cellar with wall-mounted racks">
-      <img id="tour-image" src="/WineOnTheWall/assets/pano/cellar-360.jpg" alt="Wide panoramic view of a plum-walled wine cellar lined with bottles" draggable="false" />
-      <div class="tour-hint" id="tour-hint">Drag to look around</div>
-    </div>
-    <div class="container tour-note">
-      <p>Panoramic still from a Wine On the Wall cellar installation. This sample viewer pans the wide photo. It is not a full spherical photosphere.</p>
-    </div>
+  <main class="container" style="padding:3rem 0;">
+    <h1>Opening cellar tour…</h1>
+    <p><a href="/WineOnTheWall/?tour=1">Continue to the homepage tour</a> if you are not redirected.</p>
   </main>
-  <footer class="site-footer">
-    <div class="container footer-bottom" style="border-top:0; padding-top:0;">
-      <span>&copy; Wine On the Wall. Sample site for demonstration.</span>
-      <span><a href="/WineOnTheWall/">Home</a></span>
-    </div>
-  </footer>
-  <script src="/WineOnTheWall/js/main.js"></script>
-  <script src="/WineOnTheWall/js/tour.js"></script>
 </body>
 </html>

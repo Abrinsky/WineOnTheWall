@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/WineOnTheWall/css/styles.css" />
+  <link rel="stylesheet" href="/WineOnTheWall/assets/vendor/pannellum/pannellum.css" />
   <link rel="icon" href="/WineOnTheWall/assets/logo-white.png" />
 </head>
 <body>
@@ -41,11 +42,11 @@
             <a class="btn btn-ghost" href="/WineOnTheWall/contact.html">Request a design consult</a>
           </div>
         </div>
-        <a class="hero-media" href="/WineOnTheWall/tour.html" aria-label="Open cellar 360 tour">
-          <img src="/WineOnTheWall/assets/hero-cellar.jpg" alt="Wine cellar installation with wall-mounted bottle storage" />
+        <button type="button" class="hero-media" id="open-tour" aria-haspopup="dialog" aria-controls="tour-modal" aria-label="Open cellar 360 tour">
+          <img src="/WineOnTheWall/assets/hero-cellar.jpg" alt="Wine cellar with wall-mounted bottle storage — click to open 360 tour" width="1600" height="1280" />
           <span class="hero-media-shade" aria-hidden="true"></span>
           <span class="hero-chip">Click to tour</span>
-        </a>
+        </button>
       </div>
     </section>
 
@@ -195,6 +196,22 @@
       <span>Photos sourced from wineonthewall.com for this sample.</span>
     </div>
   </footer>
+
+  <div class="tour-modal" id="tour-modal" hidden aria-hidden="true">
+    <div class="tour-modal-backdrop" data-tour-close tabindex="-1"></div>
+    <div class="tour-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="tour-modal-title">
+      <div class="tour-modal-bar">
+        <div>
+          <h2 id="tour-modal-title">Cellar 360 tour</h2>
+          <p>Drag to look around. Scroll or pinch to zoom.</p>
+        </div>
+        <button type="button" class="tour-modal-close" data-tour-close aria-label="Close tour">&times;</button>
+      </div>
+      <div id="pannellum-viewer" class="tour-modal-viewer" role="img" aria-label="Interactive spherical panorama of the wine cellar"></div>
+    </div>
+  </div>
+  <script src="/WineOnTheWall/assets/vendor/pannellum/pannellum.js"></script>
   <script src="/WineOnTheWall/js/main.js"></script>
+  <script src="/WineOnTheWall/js/tour-modal.js"></script>
 </body>
 </html>

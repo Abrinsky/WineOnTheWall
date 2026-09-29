@@ -23,6 +23,10 @@ High-class, modern stainless wine racks (not an industrial foundry theme). Dark 
 | About | `about.html` |
 | Contact | `contact.html` |
 
+## Cellar tour
+
+Home hero **Click to tour** opens an in-page Pannellum sphere (GPano-padded equirectangular). The hero still is cropped from the same panorama so the handoff feels continuous. Deep link: `/?tour=1` (and `tour.html` redirects there).
+
 ## Stack
 
 Static HTML, CSS, and a small JS nav helper. Base path for GitHub Project Pages is `/WineOnTheWall/`.
