@@ -349,6 +349,15 @@ button.hero-media:focus-visible .hero-chip {
   height: 100%;
   object-fit: cover;
 }
+.product-card-media--contain {
+  aspect-ratio: 1;
+  background: linear-gradient(160deg, #f4f5f7, #dde1e8);
+  padding: 0.85rem;
+  box-sizing: border-box;
+}
+.product-card-media--contain img {
+  object-fit: contain;
+}
 .product-card-body { padding: 1.2rem 1.25rem 1.4rem; }
 .product-card h3 { color: #fff; margin-bottom: 0.35rem; }
 .product-card p { margin-bottom: 0; font-size: 0.92rem; }
