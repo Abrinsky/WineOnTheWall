@@ -796,3 +796,56 @@ body.tour-open { overflow: hidden; }
     min-height: 50dvh;
   }
 }
+
+
+/* Tour modal drag-pan fallback (when WebGL / Pannellum blacks out) */
+.tour-modal-viewer.is-fallback,
+.tour-modal-viewer:has(.tour-fallback-stage) {
+  display: flex;
+  flex-direction: column;
+  background: #050607;
+}
+.tour-fallback-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0b0d;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  outline: none;
+}
+.tour-fallback-stage.is-dragging { cursor: grabbing; }
+.tour-fallback-stage:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--gold);
+}
+.tour-fallback-stage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  display: block;
+  pointer-events: none;
+  filter: none;
+  opacity: 1;
+  will-change: transform;
+}
+.tour-fallback-note {
+  flex-shrink: 0;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(18, 20, 26, 0.96);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.tour-modal-viewer .tour-hint {
+  bottom: 2.75rem;
+}
