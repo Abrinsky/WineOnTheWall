@@ -765,15 +765,26 @@ body.tour-open { overflow: hidden; }
   outline: none;
 }
 .tour-modal-viewer {
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
   width: 100%;
+  height: 100%;
+  position: relative;
+  background: #050607;
+  /* Explicit size so Pannellum never mounts into a 0×0 box */
+  overflow: hidden;
+}
+.tour-modal-viewer .pnlm-container,
+.tour-modal-viewer .pnlm-render-container,
+.tour-modal-viewer .pnlm-ui {
+  width: 100% !important;
+  height: 100% !important;
   background: #050607;
 }
-.tour-modal-viewer .pnlm-container {
-  width: 100%;
-  height: 100%;
-  background: #050607;
+.tour-modal-viewer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 @media (max-width: 720px) {
   .tour-modal {
@@ -782,7 +793,13 @@ body.tour-open { overflow: hidden; }
   .tour-modal-dialog {
     width: 100%;
     height: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
     border-radius: 0;
-    max-height: none;
+  }
+  .tour-modal-viewer {
+    /* Fallback min height if flex sizing blips during open */
+    min-height: 50vh;
+    min-height: 50dvh;
   }
 }
