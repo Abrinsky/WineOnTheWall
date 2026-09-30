@@ -553,6 +553,32 @@ button.hero-media:focus-visible .hero-chip {
   font-size: 0.85rem;
 }
 
+/* Social links (footer) */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  color: var(--steel-bright);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.social-links a:hover {
+  color: #fff;
+  border-color: rgba(201, 164, 106, 0.55);
+  background: rgba(163, 40, 77, 0.18);
+}
+
+
 
 /* Cellar 360 tour page */
 .tour-page {
